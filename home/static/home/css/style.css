@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body{
+    font-family:'Raleway',sans-serif;
+}
+
+.navbar-default .navbar-brand{
+    font-family:'Raleway',sans-serif;
+    color:#900c3f;
+}
+
+.navbar-default .navbar-nav > li > a{
+    color:#900c3f;
+}
+
+
+button:hover {
+    opacity: 0.8;
+}
+
+.modal-content
+{
+    margin-top: 100px !important;
+}
+
+.pb-modalreglog-input-group
+{
+    margin: auto !important;
+    text-align:center !important;
+}
+
+.pb-modalreglog-submit
+{
+    margin-left: 5px !important;
+}
+
+.pb-modalreglog-form-reg
+{
+    text-align: center !important;
+}
+
+
+.modal-footer button{
+    text-align: center !important;
+    width:100% !important;
+}
+

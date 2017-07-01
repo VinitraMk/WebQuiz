@@ -1,0 +1,124 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">WebQuiz</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if logged %}
+          <li><a href="#">{{User}}</a></li>
+          {% endif %}
+          <li><a href="#" data-target="#myModal1" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          {% if not logged %}
+          <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {% endif %}
+          {% if logged %}
+          <li><a href="/home/logout/"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% if message %}
+<div class="container">
+    <br />
+    <p class="alert alert-success">{{message}}</p>
+</div>
+{% endif %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Login form</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/home/login/" id="loginform">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Username</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group pb-modalreglog-input-group">
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="loginform">Log in</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                {% if not view %}
+                <form class="pb-modalreglog-form-reg" action="/home/signup/" method="post" id="signupform">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        <br />
+                        {{ field }}
+                        <br />
+                    {% endfor %}
+                </form>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="signupform">Sign up</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

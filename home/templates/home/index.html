@@ -45,7 +45,7 @@
           <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           {% endif %}
           {% if logged %}
-          <li><a href="/home/logout/"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
           {% endif %}
       </ul>
     </div>
@@ -68,7 +68,7 @@
                 <h4 class="modal-title" id="myModalLabel">Login form</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/home/login/" id="loginform">
+                <form method="POST" action="/login/" id="loginform">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="name">Username</label>
@@ -103,7 +103,7 @@
             </div>
             <div class="modal-body">
                 {% if not view %}
-                <form class="pb-modalreglog-form-reg" action="/home/signup/" method="post" id="signupform">
+                <form class="pb-modalreglog-form-reg" action="/signup/" method="post" id="signupform">
                     {% csrf_token %}
                     {% for field in form %}
                         {{ field.label_tag }}

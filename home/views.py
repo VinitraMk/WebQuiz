@@ -29,7 +29,7 @@ def login(request):
             return HttpResponse("Invalid User")
 
 def logout(request):
-    return HttpResponseRedirect('/home')
+    return HttpResponseRedirect('/')
 
 
 

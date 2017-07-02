@@ -10,7 +10,6 @@ def index(request):
 
 def signup(request):
     form=SignUpForm()
-    print(request.method,form)
     if request.method=="POST":
         form=SignUpForm(request.POST)
         if form.is_valid():

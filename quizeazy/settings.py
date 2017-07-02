@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'webquiz.urls'
+ROOT_URLCONF = 'quizeazy.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'webquiz.wsgi.application'
+WSGI_APPLICATION = 'quizeazy.wsgi.application'
 
 
 # Database
